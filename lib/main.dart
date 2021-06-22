@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.teal,
       ),
       routes: {
         Rotas.INICIO: (_) => InicioPage(),
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
 
 class Rotas {
   static const INICIO = '/';
-  static const CALCULADORA = '/calculara';
+  static const CALCULADORA = '/calculadora';
   static const NAVEGADOR = '/navegador';
   static const AGENDA_TELEFONICA = '/agenda-telefonica';
   static const EU_NO_MAPA = '/mapa';
