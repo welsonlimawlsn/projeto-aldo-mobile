@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_aldo/form/numero_text_editing_controller.dart';
 
 class CalculadoraPage extends StatefulWidget {
   const CalculadoraPage({Key? key}) : super(key: key);
@@ -8,47 +9,47 @@ class CalculadoraPage extends StatefulWidget {
 }
 
 class _CalculadoraPageState extends State<CalculadoraPage> {
-  final numeroUmController = new TextEditingController();
-  final numeroDoisController = TextEditingController();
-  var _resultado = "";
+  final _numeroUmController = NumeroTextEditingController();
+  final _numeroDoisController = NumeroTextEditingController();
+  var _resultado = '';
 
-  somar() {
+  _somar() {
     setState(() {
-      _resultado = (getNumeroUm() + getNumeroDois()).toString();
+      _resultado = (_getNumeroUm + _getNumeroDois).toString();
     });
   }
 
-  subtrair() {
+  _subtrair() {
     setState(() {
-      _resultado = (getNumeroUm() -  getNumeroDois()).toString();
+      _resultado = (_getNumeroUm - _getNumeroDois).toString();
     });
   }
 
-  multiplicar() {
+  _multiplicar() {
     setState(() {
-      _resultado = (getNumeroUm() *  getNumeroDois()).toString();
+      _resultado = (_getNumeroUm * _getNumeroDois).toString();
     });
   }
 
-  dividir() {
+  _dividir() {
     setState(() {
-      if (getNumeroDois() != 0) {
-        _resultado = (getNumeroUm() /  getNumeroDois()).toString();
+      if (_getNumeroDois != 0) {
+        _resultado = (_getNumeroUm / _getNumeroDois).toString();
       } else {
         _resultado = 'Não pode fazer divisão por zero!';
       }
     });
   }
 
-  calculaPorcentagem() {
+  _calcularPorcentagem() {
     setState(() {
-      _resultado = (getNumeroUm() / 100 *  getNumeroDois()).toString();
+      _resultado = (_getNumeroUm / 100 * _getNumeroDois).toString();
     });
   }
 
-  double getNumeroDois() => double.tryParse(numeroDoisController.text) ?? 0.0;
+  get _getNumeroDois => double.tryParse(_numeroDoisController.text) ?? 0.0;
 
-  double getNumeroUm() => double.tryParse(numeroUmController.text) ?? 0.0;
+  get _getNumeroUm => double.tryParse(_numeroUmController.text) ?? 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +58,18 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
         title: Text('Calculadora'),
       ),
       body: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             TextField(
-              controller: numeroUmController,
+              controller: _numeroUmController,
               decoration: InputDecoration(
                 labelText: 'Número 1:',
               ),
               keyboardType: TextInputType.number,
             ),
             TextField(
-              controller: numeroDoisController,
+              controller: _numeroDoisController,
               decoration: InputDecoration(
                 labelText: 'Número 2:',
               ),
@@ -93,23 +94,48 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: somar,
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                      Size(46, 36),
+                    ),
+                  ),
+                  onPressed: _somar,
                   child: Text('+'),
                 ),
                 ElevatedButton(
-                  onPressed: subtrair,
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                      Size(46, 36),
+                    ),
+                  ),
+                  onPressed: _subtrair,
                   child: Text('-'),
                 ),
                 ElevatedButton(
-                  onPressed: multiplicar,
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                      Size(46, 36),
+                    ),
+                  ),
+                  onPressed: _multiplicar,
                   child: Text('*'),
                 ),
                 ElevatedButton(
-                  onPressed: dividir,
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                      Size(46, 36),
+                    ),
+                  ),
+                  onPressed: _dividir,
                   child: Text('/'),
                 ),
                 ElevatedButton(
-                  onPressed: calculaPorcentagem,
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                      Size(46, 36),
+                    ),
+                  ),
+                  onPressed: _calcularPorcentagem,
                   child: Text('%'),
                 ),
               ],
