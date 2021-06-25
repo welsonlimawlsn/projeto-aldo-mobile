@@ -91,7 +91,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
               height: 15,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   style: ButtonStyle(
