@@ -13,39 +13,27 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   var _resultado = "";
 
   somar() {
-    var numero1 = double.tryParse(numeroUmController.text) ?? 0.0;
-    var numero2 = double.tryParse(numeroDoisController.text) ?? 0.0;
-
     setState(() {
-      _resultado = (numero1 + numero2).toString();
+      _resultado = (getNumeroUm() + getNumeroDois()).toString();
     });
   }
 
   subtrair() {
-    var numero1 = double.tryParse(numeroUmController.text) ?? 0.0;
-    var numero2 = double.tryParse(numeroDoisController.text) ?? 0.0;
-
     setState(() {
-      _resultado = (numero1 - numero2).toString();
+      _resultado = (getNumeroUm() -  getNumeroDois()).toString();
     });
   }
 
   multiplicar() {
-    var numero1 = double.tryParse(numeroUmController.text) ?? 0.0;
-    var numero2 = double.tryParse(numeroDoisController.text) ?? 0.0;
-
     setState(() {
-      _resultado = (numero1 * numero2).toString();
+      _resultado = (getNumeroUm() *  getNumeroDois()).toString();
     });
   }
 
   dividir() {
-    var numero1 = double.tryParse(numeroUmController.text) ?? 0.0;
-    var numero2 = double.tryParse(numeroDoisController.text) ?? 0.0;
-
     setState(() {
-      if (numero2 != 0) {
-        _resultado = (numero1 / numero2).toString();
+      if (getNumeroDois() != 0) {
+        _resultado = (getNumeroUm() /  getNumeroDois()).toString();
       } else {
         _resultado = 'Não pode fazer divisão por zero!';
       }
@@ -53,13 +41,14 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
   }
 
   calculaPorcentagem() {
-    var numero1 = double.tryParse(numeroUmController.text) ?? 0.0;
-    var numero2 = double.tryParse(numeroDoisController.text) ?? 0.0;
-
     setState(() {
-      _resultado = (numero1 / 100 * numero2).toString();
+      _resultado = (getNumeroUm() / 100 *  getNumeroDois()).toString();
     });
   }
+
+  double getNumeroDois() => double.tryParse(numeroDoisController.text) ?? 0.0;
+
+  double getNumeroUm() => double.tryParse(numeroUmController.text) ?? 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +113,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
                   child: Text('%'),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
