@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 class ContatoDAO {
   static final instance = ContatoDAO._();
 
-  ContatoDAO._() {}
+  ContatoDAO._();
 
   Future<Database> get _database async {
     WidgetsFlutterBinding.ensureInitialized();
