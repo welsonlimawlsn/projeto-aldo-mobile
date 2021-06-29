@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
+/// ACTIVITY PARA O NAVEGADOR
 class NavegadorPage extends StatefulWidget {
   const NavegadorPage({Key? key}) : super(key: key);
 
@@ -12,18 +12,15 @@ class NavegadorPage extends StatefulWidget {
 }
 
 class _NavegadorPageState extends State<NavegadorPage> {
+
   final Completer<WebViewController> webViewController = new Completer();
+
+
   var controller = new TextEditingController(text: 'https://google.com.br');
 
   @override
-  void initState() {
-    super.initState();
-
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-  }
-
-  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
           title: Container(
@@ -41,12 +38,14 @@ class _NavegadorPageState extends State<NavegadorPage> {
           ),
           actions: [
             IconButton(
-              onPressed: atualizaTela,
+              onPressed: _acessaEnderecoDigitado,
               icon: Icon(
                 Icons.send_outlined,
               ),
             )
           ]),
+
+      /// WebView, abre uma pagina da web
       body: WebView(
         initialUrl: controller.text,
         onWebViewCreated: (controller) {
@@ -57,9 +56,10 @@ class _NavegadorPageState extends State<NavegadorPage> {
     );
   }
 
-  void atualizaTela() {
+  void _acessaEnderecoDigitado() {
     webViewController.future.then((value) {
-      value.loadUrl(controller.text).whenComplete(() => setState(() {}));
+      value.loadUrl(controller.text)
+          .whenComplete(() => setState(() {}));
     });
   }
 }

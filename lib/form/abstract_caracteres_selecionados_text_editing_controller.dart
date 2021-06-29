@@ -5,6 +5,7 @@ abstract class AbtractCaracteresSelecionadosTextEditingController
   int? numeroCaracteres;
   String _textoAntigo = '';
 
+  /// CONSTRUTOR
   AbtractCaracteresSelecionadosTextEditingController({
     this.numeroCaracteres,
     String? text,
@@ -12,10 +13,13 @@ abstract class AbtractCaracteresSelecionadosTextEditingController
     addListener(_changeListener);
   }
 
+  /// FICA OUVINDO AS ALTERAÇÕES DO TEXTO DIGITADO NO CAMPO
   void _changeListener() {
     if (text.isNotEmpty) {
       var newText =
-          text.characters.where(_isValidCharacter).fold('', _concatCharacters);
+          text.characters/// SEPARA OS CARACTERES EM UMA LISTA
+              .where(_isValidCharacter)/// SELECIONA OS CARACTERES VALIDOS
+              .fold('', _concatCharacters);/// JUNTA OS CARACTERES NOVAMENTE
 
       var estaNoLimiteDeCaracteres =
           numeroCaracteres == null || newText.length <= (numeroCaracteres ?? 0);

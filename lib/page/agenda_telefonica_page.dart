@@ -15,6 +15,8 @@ class _AgendaTelefonicaPageState extends State<AgendaTelefonicaPage> {
 
   List<Contato> _contatos = [];
 
+
+  /// initState É CHAMADO QUANDO ABRE A TELA
   @override
   void initState() {
     super.initState();
@@ -50,7 +52,7 @@ class _AgendaTelefonicaPageState extends State<AgendaTelefonicaPage> {
   _atualizaListaDeContatos() {
     _agendaService.listaContatos().then((value) {
       setState(() {
-        value.sort((c1, c2) => c1.nome.compareTo(c2.nome));
+        value.sort((c1, c2) => c1.nome.compareTo(c2.nome)); /// ORDENA POR NOME
         _contatos = value;
       });
     });
@@ -66,7 +68,7 @@ class _AgendaTelefonicaPageState extends State<AgendaTelefonicaPage> {
             children: [
               ListTile(
                 leading: Icon(Icons.delete),
-                title: Text('Exluir'),
+                title: Text('Excluir'),
                 onTap: () {
                   _removeContato(contato);
                   Navigator.pop(context);

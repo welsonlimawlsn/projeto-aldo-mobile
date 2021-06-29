@@ -12,21 +12,32 @@ class MapaPage extends StatefulWidget {
 }
 
 class _MapaPageState extends State<MapaPage> {
+
   Completer<GoogleMapController> _controller = Completer();
+
   Set<Marker> position = {};
 
   Future<Position> geolocation() async {
+
+
+    /// VERIFICA SE A LOCALIZAÇÃO ESTÁ ATIVA
     if (!await Geolocator.isLocationServiceEnabled()) {
-      return Future.error("A localização está desabilitada !");
+      return Future.error("A localização está desabilitada !"); ///DÁ ERRO
     }
+
+    /// VERIFICA SE O USUARIO DEU PERMISSÃO DE LOCALIZAÇÃO PARA O APP
     if (!await Permission.location.isGranted) {
+
+      /// SOLICITA PERMISSÃO
       var permissionAcess = await Permission.location.request();
 
+      /// VERIFICA NOVAMENTE SE A PERMISSÃO FOI DADA
       if (!permissionAcess.isGranted) {
-        return Future.error("O usuário necessita dar permissão !");
+        return Future.error("O usuário necessita dar permissão !"); ///DÁ ERRO
       }
     }
 
+    /// RETORNA A POSIÇÃO DO CELULAR DO USUARIO COM A MELHOR PRECISÃO
     return Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best);
   }
@@ -37,15 +48,20 @@ class _MapaPageState extends State<MapaPage> {
     geolocation().then((localization) {
       setState(() {
         var place = LatLng(localization.latitude, localization.longitude);
+
+        /// ADICIONA MARCARDOR
         position.add(Marker(
           markerId: new MarkerId("position"),
           position: place,
         ));
+
+
         showPosition(place);
       });
     });
   }
 
+  /// CRIA ANIMAÇÃO PARA IR ATE A POSIÇÃO DO CELULAR DO USUARIO
   void showPosition(LatLng localization) async {
     var controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(

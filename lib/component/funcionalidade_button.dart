@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+/// BOTÃO FUNCIONALIDADE
 class FuncionalidadeButton extends StatelessWidget {
+  /// ATRIBUTOS DA CLASSE
   final String nome;
   final String rota;
   final IconData icone;
 
+  /// CONSTRUTOR COM PARAMETROS NOMEADOS
   const FuncionalidadeButton({
     Key? key,
     required this.nome,
@@ -12,12 +15,17 @@ class FuncionalidadeButton extends StatelessWidget {
     required this.icone,
   }) : super(key: key);
 
+  /// NAVEGA PARA OUTRA TELA
   void _navega(BuildContext context) {
-    Navigator.of(context).pushNamed(rota);
+    Navigator.of(context).pushNamed(rota); /// EQUIVALE A CRIA UM INTENT PARA OUTRA ACTIVITY
   }
 
+
+  /// METODO buid
   @override
   Widget build(BuildContext context) {
+
+    /// InkWell DETECTA GESTOS NA TELA
     return InkWell(
       onTap: () => _navega(context),
       splashColor: Colors.black,
@@ -34,6 +42,8 @@ class FuncionalidadeButton extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+
+            /// AJUSTA O TAMANHO DE ACORDO DA LARGURA DA TELA
             FittedBox(
               child: Text(
                 nome,

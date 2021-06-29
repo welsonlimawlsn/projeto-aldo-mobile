@@ -8,12 +8,16 @@ class CalculadoraPage extends StatefulWidget {
   _CalculadoraPageState createState() => _CalculadoraPageState();
 }
 
+/// CLASSE QUE POSSIBILITAR FAZER A ATUALIZAÇÃO DA TELA
 class _CalculadoraPageState extends State<CalculadoraPage> {
+
+  /// Controller ARMAZENA OS TEXTOS DIGITADOS NOS CAMPOS, E TEM REGRAS DE PREENCHIMENTO
   final _numeroUmController = NumeroTextEditingController();
   final _numeroDoisController = NumeroTextEditingController();
   var _resultado = '';
 
   _somar() {
+    /// setState É NECESSARIO CHAMAR TODA A VEZ QUE FOR PRECISO ATUALIZAR A TELA
     setState(() {
       _resultado = (_getNumeroUm + _getNumeroDois).toString();
     });
@@ -61,6 +65,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
+            /// CAMPO PARA DIGITAR UM TEXTO
             TextField(
               controller: _numeroUmController,
               decoration: InputDecoration(
@@ -90,6 +95,7 @@ class _CalculadoraPageState extends State<CalculadoraPage> {
             SizedBox(
               height: 15,
             ),
+            /// ORGANIZA OS ELEMENTOS UM AO LADO DO OUTRO
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
